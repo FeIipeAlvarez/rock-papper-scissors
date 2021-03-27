@@ -1,0 +1,24 @@
+@mixin createAnimation($name, $translateX, $deg) {
+    @keyframes rock-papper-scissors-#{$name} {
+        0% {
+            transform: translate(0, 0) rotate(0);
+        }
+
+        50% {
+            transform: translate($translateX, -20%) rotate($deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0);
+        }
+    }
+}
+
+@mixin initAnimation($name) {
+    animation-name           : $name;
+    animation-duration       : 1s;
+    animation-iteration-count: 3;
+}
+
+@include createAnimation('left', -10%, -20deg);
+@include createAnimation('right', 10%, 20deg);

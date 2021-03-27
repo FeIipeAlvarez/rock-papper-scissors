@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock papper scissors</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <main class="main">
+        <article class="form-container" id="formContainer">
+            <h1 class="form-container__title">ROCK PAPPER SCISSORS</h1>
+            <form class="form">
+                <h2 class="form__title">Type your nickname and select a number of rounds.</h2>
+                <div class="form__group">
+                    <label for="username" class="form__label">Nickname</label>
+                    <input type="text" id="username" class="form__input">
+                </div>
+                <div class="form__group">
+                    <label class="form__label form__label--rounds" for="rounds">Rounds</label>
+
+                    <select id="rounds" class="form__input">
+                        <option class="form__option">1</option>
+                        <option class="form__option">3</option>
+                        <option class="form__option">5</option>
+                        <option class="form__option">7</option>
+                        <option class="form__option">9</option>
+                    </select>
+                </div>
+
+                <div class="form__group">
+                    <button class="form__button" id="goPlay">Play!</button>
+                </div>
+            </form>
+        </article>
+        <article class="game-container" id="gameContainer">
+
+            <div class="game-container__card" id="frontCard">
+                <h2 class="game-rounds" id="gameRounds"> <i class="fas fa-arrow-left return" id="return"></i>
+                    ROUND <span id="currentRound">1</span> OF <span id="totalRounds"></span><i
+                        class="far fa-question-circle rulesInfo" id="rulesInfo"></i> </h2>
+                <div class="game-score">
+                    <div class="game-score__item">
+                        <div class="game-score__label" id="nickname">YOU</div>
+                        <div class="game-score__point" id="userPoints">0</div>
+                    </div>
+                    <div class="game-score__item">
+                        <div class="game-score__label">TIES</div>
+                        <div class="game-score__point" id="tiesPoints">0</div>
+                    </div>
+                    <div class="game-score__item">
+                        <div class="game-score__label">MACHINE</div>
+                        <div class="game-score__point" id="machinePoints">0</div>
+                    </div>
+                </div>
+
+                <div class="game-start">
+                    <button class="game-start__button" id="startRound">Start!</button>
+                </div>
+
+                <div class="game-hands">
+                    <div class="game-hands__hand" id="userHandContainer">
+                        <img src="assets/img/rockLeft.svg" alt="rock, papper or scissors" class="game-hands__img"
+                            id="leftHand">
+                    </div>
+                    <div class="game-hands__hand" id="machineHandContainer">
+                        <img src="assets/img/rockRight.svg" alt="rock, papper or scissors" class="game-hands__img"
+                            id="rightHand">
+                    </div>
+                </div>
+
+                <div class="game-choose" id="gameChoose">
+                    <div class="game-choose__item game-choose__item--disabled" data-option="rock">
+                        <img src="assets/img/rockLeft.svg" alt="rock option" class="game-choose__img">
+                    </div>
+                    <div class="game-choose__item game-choose__item--disabled" data-option="papper">
+                        <img src="assets/img/papperLeft.svg" alt="papper option" class="game-choose__img">
+                    </div>
+                    <div class="game-choose__item game-choose__item--disabled" data-option="scissors">
+                        <img src="assets/img/scissorsLeft.svg" alt="scissors option" class="game-choose__img">
+                    </div>
+                </div>
+
+                <div class="game-winner" id="finalMessage"></div>
+            </div>
+
+            <div class="game-container__card" id="backCard">
+                <h2 class="game-rounds">INFORMATION</h2>
+                <ul class="game-info">
+                    <li class="game-info__item">You can choose when you press the 'start' button.
+                    </li>
+                    <li class="game-info__item">You have 3 seconds to choose your move.
+                    </li>
+                    <li class="game-info__item">If you don't choose an option before the countdown ends, the machine
+                        will win the round.
+                    </li>
+                </ul>
+                <button id="returnGame" class="game-start__button">I have it!</button>
+            </div>
+        </article>
+    </main>
+    <script type="module" src="js/script.js"></script>
+</body>
+
+</html>
