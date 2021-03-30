@@ -1,17 +1,17 @@
 body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin          : 0;
+  min-height      : 100vh;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
   background-color: #3bb78f;
   background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
 }
 
 .main {
-  margin: 0 0.5rem;
-  display: flex;
-  width: 700px;
+  margin  : 0 0.5rem;
+  display : flex;
+  width   : 700px;
   overflow: hidden;
 }
 
@@ -20,68 +20,76 @@ body {
 }
 
 .form-container {
-  min-width: 100%;
-  height: 500px;
-  max-width: 700px;
-  border: 2px solid #0e0e0e;
-  border-radius: 5px;
-  padding: 0.5rem;
-  color: #0e0e0e;
-  box-sizing: border-box;
-  transition: margin-left 0.3s ease-in;
+  min-width       : 100%;
+  height          : 500px;
+  max-width       : 700px;
+  border          : 2px solid #0e0e0e;
+  border-radius   : 5px;
+  padding         : 0.5rem;
+  color           : #0e0e0e;
+  box-sizing      : border-box;
+  transition      : margin-left 0.3s ease-in;
   background-color: #fefeff;
 }
+
 .form-container__title {
-  text-align: center;
-  font-size: 1.5rem;
+  text-align   : center;
+  font-size    : 1.5rem;
   border-bottom: 2px solid #0e0e0e;
 }
+
 .form-container--move {
   margin-left: -100%;
 }
 
 .form,
 .form__group {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items   : flex-start;
 }
 
 .form {
   align-items: center;
 }
+
 .form__title {
-  margin: 0.5rem 0 0 0;
-  font-size: 1.3rem;
+  margin    : 0.5rem 0 0 0;
+  font-size : 1.3rem;
   text-align: center;
 }
+
 .form__group {
-  width: 90%;
+  width     : 90%;
   margin-top: 2rem;
 }
+
 .form__label {
   font-size: 1.5rem;
 }
+
 .form__input {
-  width: 100%;
-  border: 2px solid #0e0e0e;
+  width        : 100%;
+  border       : 2px solid #0e0e0e;
   border-radius: 5px;
-  padding: 0.8rem;
-  box-sizing: border-box;
-  font-size: 1.3rem;
+  padding      : 0.8rem;
+  box-sizing   : border-box;
+  font-size    : 1.3rem;
 }
+
 .form__button {
-  cursor: pointer;
-  border: none;
-  align-self: flex-end;
+  cursor          : pointer;
+  border          : none;
+  align-self      : flex-end;
   background-color: #0e0e0e;
-  color: #fefeff;
-  width: 8rem;
-  padding: 1rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  transition: width 0.3s;
+  color           : #fefeff;
+  width           : 8rem;
+  padding         : 1rem;
+  border-radius   : 5px;
+  font-size       : 1.5rem;
+  transition      : width 0.3s;
 }
+
 .form__button:hover {
   width: 9.5rem;
 }
@@ -90,79 +98,95 @@ body {
   0% {
     transform: translate(0, 0) rotate(0);
   }
+
   50% {
     transform: translate(-10%, -20%) rotate(-20deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0);
   }
 }
+
 @keyframes rock-papper-scissors-right {
   0% {
     transform: translate(0, 0) rotate(0);
   }
+
   50% {
     transform: translate(10%, -20%) rotate(20deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0);
   }
 }
-.rotate > div:first-child {
+
+.rotate>div:first-child {
   transform: perspective(500px) rotateY(180deg);
 }
-.rotate > div:last-child {
+
+.rotate>div:last-child {
   transform: perspective(500px) rotateY(360deg);
 }
 
 .game-container {
-  min-width: 100%;
-  max-width: 700px;
-  height: 550px;
-  position: relative;
+  min-width      : 100%;
+  max-width      : 700px;
+  height         : 550px;
+  position       : relative;
   transform-style: preserve-3d;
-  border-radius: 10px;
+  border-radius  : 10px;
 }
+
 .game-container__card {
-  padding: 1rem;
-  box-sizing: border-box;
-  color: #fefeff;
-  background-color: #1a1a1a;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  transform-style: preserve-3d;
+  padding            : 1rem;
+  box-sizing         : border-box;
+  color              : #fefeff;
+  background-color   : #1a1a1a;
+  position           : absolute;
+  width              : 100%;
+  height             : 100%;
+  border-radius      : 10px;
+  transform-style    : preserve-3d;
   backface-visibility: hidden;
-  transform: perspective(500px) rotateY(0deg);
-  transition: 0.5s ease;
+  transform          : perspective(500px) rotateY(0deg);
+  transition         : 0.5s ease;
 }
+
 .game-container__card:last-child {
   transform: perspective(500px) rotateY(180deg);
 }
+
 .game-rounds {
-  font-size: 2rem;
-  margin: 0;
+  font-size    : 2rem;
+  margin       : 0;
   margin-bottom: 1rem;
-  text-align: center;
-  position: relative;
+  text-align   : center;
+  position     : relative;
 }
+
 .game-info__item {
-  font-size: 1.4rem;
+  font-size    : 1.4rem;
   margin-bottom: 1rem;
 }
+
 .game-score {
-  font-size: 1.5rem;
-  display: flex;
+  font-size : 1.5rem;
+  display   : flex;
   text-align: center;
 }
-.game-score__item:first-child, .game-score__item:last-child {
-  width: 40%;
+
+.game-score__item:first-child,
+.game-score__item:last-child {
+  width         : 40%;
   text-transform: uppercase;
 }
+
 .game-score__item:nth-child(2) {
   width: 20%;
 }
+
 .game-score__point {
   text-align: center;
 }
@@ -170,113 +194,137 @@ body {
 .game-start {
   margin: 1rem 0;
 }
+
 .game-start__button {
-  outline: none;
-  cursor: pointer;
-  border: none;
-  display: block;
+  outline         : none;
+  cursor          : pointer;
+  border          : none;
+  display         : block;
   background-color: #0bab64;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
-  width: 8rem;
-  color: #fff;
-  padding: 0.4rem;
-  font-size: 1.3rem;
-  transition: width 0.3s ease-in-out;
+  margin-left     : auto;
+  margin-right    : auto;
+  border-radius   : 5px;
+  width           : 8rem;
+  color           : #fff;
+  padding         : 0.4rem;
+  font-size       : 1.3rem;
+  transition      : width 0.3s ease-in-out;
 }
+
 .game-start__button:hover {
   width: 9rem;
 }
 
+.game-start__count-down {
+  font-size       : 2rem;
+  display         : block;
+  text-align      : center;
+  width           : 40%;
+  margin-left     : auto;
+  margin-right    : auto;
+  background-color: #0e0e0e;
+  border-radius   : 10px;
+  margin-bottom   : .5rem;
+}
+
 .game-hands {
-  display: flex;
+  display        : flex;
   justify-content: space-between;
 }
+
 .game-hands__hand {
-  width: 49%;
-  height: 12rem;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.75);
-  border-radius: 10px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
+  width          : 49%;
+  height         : 12rem;
+  box-shadow     : 0px 0px 8px 2px rgba(0, 0, 0, 0.75);
+  border-radius  : 10px;
+  box-sizing     : border-box;
+  display        : flex;
+  align-items    : center;
   justify-content: center;
 }
+
 .game-hands__hand--winner {
   box-shadow: 0px 0px 8px 2px #0bab64;
 }
+
 .game-hands__img {
   max-width: 100%;
 }
+
 .game-hands__img--left {
-  animation-name: rock-papper-scissors-left;
-  animation-duration: 1s;
+  animation-name           : rock-papper-scissors-left;
+  animation-duration       : 1s;
   animation-iteration-count: 3;
 }
+
 .game-hands__img--right {
-  animation-name: rock-papper-scissors-right;
-  animation-duration: 1s;
+  animation-name           : rock-papper-scissors-right;
+  animation-duration       : 1s;
   animation-iteration-count: 3;
 }
 
 .game-choose {
-  max-width: 300px;
-  display: flex;
-  margin-top: 1rem;
+  max-width      : 300px;
+  display        : flex;
+  margin-top     : 1rem;
   justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left    : auto;
+  margin-right   : auto;
 }
+
 .game-choose__item {
-  cursor: pointer;
-  padding: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
+  cursor          : pointer;
+  padding         : 0.3rem;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  width           : 50px;
   background-color: #0e0e0e;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  transition: opacity 0.2s ease-in;
+  border          : 2px solid transparent;
+  border-radius   : 50%;
+  transition      : opacity 0.2s ease-in;
 }
+
 .game-choose__item--disabled {
   pointer-events: none;
-  opacity: 0.3;
-  box-shadow: none;
+  opacity       : 0.3;
+  box-shadow    : none;
 }
+
 .game-choose__item--selected {
   box-shadow: 0 0 6px 1px #fff;
 }
+
 .game-choose__img {
   max-width: 100%;
 }
 
 .game-winner {
-  font-size: 2rem;
-  color: #0bab64;
+  font-size : 2rem;
+  color     : #0bab64;
   text-align: center;
-  padding: 0.5rem 0;
+  padding   : 0.5rem 0;
 }
 
 .return {
-  cursor: pointer;
+  cursor   : pointer;
   font-size: 1.5rem;
-  position: absolute;
-  left: 0;
+  position : absolute;
+  left     : 0;
 }
+
 .return--disabled {
   pointer-events: none;
-  opacity: 0.5;
+  opacity       : 0.5;
 }
 
 .rulesInfo {
-  cursor: pointer;
+  cursor  : pointer;
   position: absolute;
-  right: 0;
+  right   : 0;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
