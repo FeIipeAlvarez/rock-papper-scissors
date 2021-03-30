@@ -5,10 +5,14 @@ const $returnButton = document.getElementById('return');
 const $username = document.getElementById('username');
 const $numberRounds = document.getElementById('rounds');
 const $startRound = document.getElementById('startRound');
+const $repeatRound = document.getElementById('repeatRound');
+const $timer = document.getElementById('timer');
 const $optionsContainer = document.getElementById('gameChoose');
 const $leftHand = document.getElementById('leftHand');
 const $rightHand = document.getElementById('rightHand');
 const $options = document.querySelectorAll('.game-choose__item');
+
+let numberOfClicks = 0; //Numero de veces que se ha dado click a start!
 
 const $userPoints = document.getElementById('userPoints');
 const $machinePoints = document.getElementById('machinePoints');
@@ -86,13 +90,13 @@ $optionsContainer.addEventListener('click', e => {
 });
 
 
+const isGameOver = () => parseInt($totalRounds.textContent) === numberOfClicks;
+
 let totalTime = 3;
 const countDown = () => { //Cuenta atras
-    $startRound.disabled = true;
-    $startRound.textContent = totalTime;
+    $timer.textContent = totalTime;
     if (totalTime == 0) {
-        $startRound.disabled = false;
-        $startRound.textContent = 'Start!';
+        if (!isGameOver()) $startRound.classList.remove('disabled');
         totalTime = 3;
     } else {
         totalTime--;
@@ -133,18 +137,19 @@ const drawPoints = (userMove, machineMove) => {//Actualiza los puntos de acuerdo
         const winnerHand = document.getElementById(`${rulesGame[userMove][machineMove]}HandContainer`);
         winnerElementScore.textContent = parseInt(winnerElementScore.textContent) + 1;
         if (winnerHand) winnerHand.classList.add('game-hands__hand--winner');
-
     }
 };
 
 const resetGame = () => {//Resetea todos los valores cambiados.
 
+    numberOfClicks = 0;
     $currentRound.textContent = 1;
     $userPoints.textContent = 0;
     $ties.textContent = 0;
     $machinePoints.textContent = 0;
     $finalMessage.textContent = '';
-    $startRound.textContent = 'Start!';
+    $startRound.classList.remove('disabled');
+    $repeatRound.classList.add('disabled');
     $leftHand.src = 'assets/img/rockLeft.svg';
     $rightHand.src = 'assets/img/rockRight.svg'
 
@@ -181,21 +186,24 @@ const finishGame = () => {//Muestra al usuario cuando ha ganado o perdido la par
                 break;
         }
 
-        setTimeout(() => $startRound.textContent = 'Again?');
+        $repeatRound.classList.remove('disabled');
+        $startRound.classList.add('disabled');
     }
 };
 
+
+
 const disabledOptions = () => {//Deshabilita las manos a elegir
-    for (const option of $options) option.classList.add('game-choose__item--disabled');
+    for (const option of $options) option.classList.add('disabled');
 };
 
 const enabledOptions = () => {//Habilita las manos a elegir
-    for (const option of $options) option.classList.remove('game-choose__item--disabled');
+    for (const option of $options) option.classList.remove('disabled');
 };
 
-const disabledReturn = () => $returnButton.classList.add('return--disabled'); //Deshabilita el boton para regresar al form.
+const disabledReturn = () => $returnButton.classList.add('disabled'); //Deshabilita el boton para regresar al form.
 
-const enabledReturn = () => $returnButton.classList.remove('return--disabled');//Habilita el boton para regresar al form.
+const enabledReturn = () => $returnButton.classList.remove('disabled');//Habilita el boton para regresar al form.
 
 //Rotar el contenedor.
 $showRulesButton.addEventListener('click', () => $gameContainer.classList.add('rotate'));
@@ -228,8 +236,14 @@ const initGame = () => {
 }
 
 $startRound.addEventListener('click', e => {
-
-    if (e.target.textContent !== 'Start!') resetGame();
-
+    numberOfClicks++;
+    $startRound.classList.add('disabled');
     initGame();
+});
+
+$repeatRound.addEventListener('click', () => {
+    resetGame();
+    initGame();
+    numberOfClicks++;
+    $startRound.classList.add('disabled');
 });
