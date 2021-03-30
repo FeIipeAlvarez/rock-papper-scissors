@@ -24,6 +24,8 @@ const $frontCard = document.getElementById('frontCard');
 const $backCard = document.getElementById('backCard');
 const $returnGame = document.getElementById('returnGame');
 
+const $startOrAgain = document.getElementById('startOrAgain');
+
 //Esta lógica se aplica en la funciona drawPoints()
 const rulesGame = {
     rock: {
@@ -93,6 +95,7 @@ const countDown = () => { //Cuenta atras
     if (totalTime == 0) {
         $startRound.disabled = false;
         $startRound.textContent = 'Start!';
+        $startOrAgain.dataset.option = 'start';
         totalTime = 3;
     } else {
         totalTime--;
@@ -144,6 +147,7 @@ const resetGame = () => {//Resetea todos los valores cambiados.
     $machinePoints.textContent = 0;
     $finalMessage.textContent = '';
     $startRound.textContent = 'Start!';
+    $startOrAgain.dataset.option = 'start';
     $leftHand.src = 'assets/img/rockLeft.svg';
     $rightHand.src = 'assets/img/rockRight.svg'
 
@@ -180,7 +184,10 @@ const finishGame = () => {//Muestra al usuario cuando ha ganado o perdido la par
                 break;
         }
 
-        setTimeout(() => $startRound.textContent = 'Again?');
+        setTimeout(() => {
+            $startRound.textContent = 'Again?'
+            $startOrAgain.dataset.option = 'again';
+        });
     }
 };
 
@@ -226,9 +233,9 @@ const initGame = () => {
     }, 3000);
 }
 
-$startRound.addEventListener('click', e => {
+$startRound.addEventListener('click', () => {
 
-    if (e.target.textContent !== 'Start!') resetGame();
+    if ($startOrAgain.dataset.option !== 'start') resetGame();
 
     initGame();
 });
