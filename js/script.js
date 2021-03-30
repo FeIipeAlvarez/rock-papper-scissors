@@ -5,7 +5,6 @@ const $returnButton = document.getElementById('return');
 const $username = document.getElementById('username');
 const $numberRounds = document.getElementById('rounds');
 const $startRound = document.getElementById('startRound');
-const $repeatRound = document.getElementById('repeatRound');
 const $optionsContainer = document.getElementById('gameChoose');
 const $leftHand = document.getElementById('leftHand');
 const $rightHand = document.getElementById('rightHand');
@@ -24,8 +23,6 @@ const $showRulesButton = document.getElementById('rulesInfo');
 const $frontCard = document.getElementById('frontCard');
 const $backCard = document.getElementById('backCard');
 const $returnGame = document.getElementById('returnGame');
-
-const $countDown = document.getElementById('countDown');
 
 //Esta lógica se aplica en la funciona drawPoints()
 const rulesGame = {
@@ -60,15 +57,6 @@ $goPlay.addEventListener('click', e => {//Submit form.
     }
 });
 
-// const changeButton = () => {
-//     $repeatRound.classList.toggle('hide');
-//     $startRound.classList.toggle('hide');
-// };
-
-// const showOrHideCountDown = () => {
-//     $startRound.classList.toggle('hide');
-//     $countDown.classList.toggle('hide');
-// };
 
 const setTotalRounds = () => $totalRounds.textContent = $numberRounds.value;//Cambia el número total de rondas
 
@@ -98,44 +86,19 @@ $optionsContainer.addEventListener('click', e => {
 });
 
 
-const countDown = () => {
-    let totalTime = 3;
-    // showOrHideCountDown();
-    $startRound.classList.add('hide');
-    $countDown.classList.remove('hide');
-
-    $countDown.textContent = totalTime;
-    const timer = setInterval(() => {
+let totalTime = 3;
+const countDown = () => { //Cuenta atras
+    $startRound.disabled = true;
+    $startRound.textContent = totalTime;
+    if (totalTime == 0) {
+        $startRound.disabled = false;
+        $startRound.textContent = 'Start!';
+        totalTime = 3;
+    } else {
         totalTime--;
-        $countDown.textContent = totalTime;
-        if (totalTime === 1) {
-            clearInterval(timer);
-            // setTimeout(showOrHideCountDown, 1000);
-            console.log('desde count');
-            $repeatRound.classList.add('hide');
-            $countDown.classList.add('hide');
-            $startRound.classList.remove('hide');
-            if (parseInt($currentRound.textContent) !== parseInt($totalRounds.textContent)) {
-            }
-        };
-
-    }, 1000);
-};
-
-
-// const countDown = () => { //Cuenta atras
-//     // $startRound.disabled = true;
-//     $startRound.textContent = totalTime;
-//     if (totalTime == 0) {
-//         // $startRound.disabled = false;
-//         // $startRound.textContent = 'Start!';
-//         // $countDown.dataset.option = 'start';
-//         totalTime = 3;
-//     } else {
-//         totalTime--;
-//         setTimeout(countDown, 1000);
-//     }
-// }
+        setTimeout(countDown, 1000);
+    }
+}
 
 const addAnimation = () => { //Agrega una clase para animar las manos
 
@@ -162,7 +125,7 @@ const drawOptionSelected = (userMove = 'rock', machineMove = 'rock') => {//Cambi
 };
 
 const drawPoints = (userMove, machineMove) => {//Actualiza los puntos de acuerdo a los resultados.
-    if (!userMove) {//Si el usuario no selecciona niguna opción.
+    if (!userMove) {//Si el usuario no selecciona ninguna opcion.
         $machinePoints.textContent = parseInt($machinePoints.textContent) + 1;
         document.getElementById('machineHandContainer').classList.add('game-hands__hand--winner');
     } else {
@@ -170,6 +133,7 @@ const drawPoints = (userMove, machineMove) => {//Actualiza los puntos de acuerdo
         const winnerHand = document.getElementById(`${rulesGame[userMove][machineMove]}HandContainer`);
         winnerElementScore.textContent = parseInt(winnerElementScore.textContent) + 1;
         if (winnerHand) winnerHand.classList.add('game-hands__hand--winner');
+
     }
 };
 
@@ -180,9 +144,7 @@ const resetGame = () => {//Resetea todos los valores cambiados.
     $ties.textContent = 0;
     $machinePoints.textContent = 0;
     $finalMessage.textContent = '';
-    // changeButton();
-    // $startRound.textContent = 'Start!';
-    // $countDown.dataset.option = 'start';
+    $startRound.textContent = 'Start!';
     $leftHand.src = 'assets/img/rockLeft.svg';
     $rightHand.src = 'assets/img/rockRight.svg'
 
@@ -207,13 +169,6 @@ const finishGame = () => {//Muestra al usuario cuando ha ganado o perdido la par
 
     if (parseInt($currentRound.textContent) === parseInt($totalRounds.textContent)) {
 
-        // changeButton();
-
-        console.log('desde finish');
-        $startRound.classList.add('hide');
-        $repeatRound.classList.remove('hide');
-        // $countDown.classList.add('hide');
-
         switch (true) {
             case userPoints < machinePoints:
                 finalMessage(`¡The machine has won!`, '#ff1b1b')
@@ -226,11 +181,7 @@ const finishGame = () => {//Muestra al usuario cuando ha ganado o perdido la par
                 break;
         }
 
-
-        // setTimeout(() => {
-        // $startRound.textContent = 'Again?'
-        // $countDown.dataset.option = 'again';
-        // });
+        setTimeout(() => $startRound.textContent = 'Again?');
     }
 };
 
@@ -276,16 +227,9 @@ const initGame = () => {
     }, 3000);
 }
 
-$startRound.addEventListener('click', () => {
+$startRound.addEventListener('click', e => {
 
-    // if ($countDown.dataset.option !== 'start') resetGame();
+    if (e.target.textContent !== 'Start!') resetGame();
 
-    initGame();
-});
-
-$repeatRound.addEventListener('click', () => {
-    $countDown.classList.remove('hide');
-    $repeatRound.classList.add('hide');
-    resetGame();
     initGame();
 });
