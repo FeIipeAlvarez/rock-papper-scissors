@@ -128,14 +128,14 @@ const drawOptionSelected = (userMove = 'rock', machineMove = 'rock') => {//Cambi
 };
 
 const drawPoints = (userMove, machineMove) => {//Actualiza los puntos de acuerdo a los resultados.
-    if (!userMove) {
+    if (!userMove) {//Si el usuario no selecciona niguna opción.
         $machinePoints.textContent = parseInt($machinePoints.textContent) + 1;
+        document.getElementById('machineHandContainer').classList.add('game-hands__hand--winner');
     } else {
         const winnerElementScore = document.getElementById(`${rulesGame[userMove][machineMove]}Points`);
         const winnerHand = document.getElementById(`${rulesGame[userMove][machineMove]}HandContainer`);
         winnerElementScore.textContent = parseInt(winnerElementScore.textContent) + 1;
         if (winnerHand) winnerHand.classList.add('game-hands__hand--winner');
-
     }
 };
 
@@ -183,6 +183,7 @@ const finishGame = () => {//Muestra al usuario cuando ha ganado o perdido la par
                 finalMessage(`¡You have Tied!`, '#fefeff')
                 break;
         }
+        
 
         setTimeout(() => {
             $startRound.textContent = 'Again?'
